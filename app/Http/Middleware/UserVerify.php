@@ -1,29 +1,29 @@
 <?php
 
 namespace App\Http\Middleware;
-
 use App\Providers\RouteServiceProvider;
-use Closure;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Middleware\Auth;
 
-class RedirectIfAuthenticated
+use Closure;
+
+class UserVerify
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
-     * @param  string|null  $guard
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next)
     {
-
-        if(Auth::guard($guard)->check()) {
-            if(Auth::user()->isUser()){
+        if (!$request->expectsJson()) {
+            return route('login');
+        }
+        else{
+            if (\Auth::user()->isUser()) {
                 return redirect(RouteServiceProvider::HOME);
-            }
-            elseif(Auth::user()->isAdmin() || Auth::user()->isModerator()){
+            } elseif (\Auth::user()->isAdmin() || \Auth::user()->isModerator()) {
                 return redirect(RouteServiceProvider::ADMIN);
             }
         }

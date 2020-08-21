@@ -71,6 +71,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
+    public function isUser(): bool
+    {
+        return $this->level === self::LEVEL_USER;
+    }
+
     public function isAdmin(): bool
     {
         return $this->level === self::LEVEL_ADMIN;

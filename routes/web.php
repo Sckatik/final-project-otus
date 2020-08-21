@@ -21,7 +21,7 @@ Route::get('/contacts', function () {
     return view('contacts');
 });
 */
-Route::name('cms.')->group(function () {
+/*Route::name('cms.')->group(function () {
     Route::prefix('{locale}/admin')->middleware([
         'auth',
         'shareCommonData:admin',
@@ -33,9 +33,25 @@ Route::name('cms.')->group(function () {
             'pages' => 'Admin\Pages\PageController',
         ], []);
     });
+});*/
+
+Route::name('cms.')->group(function () {
+    Route::prefix('admin')->middleware([
+        'auth',
+        'shareCommonData:admin',
+    ])->group(function () {
+        Route::get('/', 'Admin\DashboardController')->name('dashboard');
+        Route::resources([
+            'films' => 'Admin\Films\FilmController',
+            'pages' => 'Admin\Pages\PageController',
+        ], []);
+    });
+    Route::get('/account', 'AccountController@index')->name('account');
 });
 
 Route::get('/films', 'FilmController@index')->name('films');
 
+
 Route::view('/', 'home');
+
 Auth::routes();

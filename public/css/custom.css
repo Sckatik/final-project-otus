@@ -67,6 +67,12 @@ a.liked,
     background: #dd3333;
 }
 
+.page_user nav.user ul li.selected,
+.dt_mainmeta nav.releases ul li a:hover {
+    background: #dd3333;
+    color: #fff;
+}
+
 .user_edit_control ul li a.selected,
 form.update_profile fieldset input[type=submit],
 .page_user .content .paged a.load_more:hover,
@@ -136,6 +142,11 @@ header.main .hbox .search form button[type=submit]:hover,
     color: #dd3333;
 }
 
+.page_user nav.user ul li:hover {
+    color: #dd3333;
+    cursor: pointer;
+}
+
 a.see_all {
     border-color: #dd3333;
 }
@@ -197,3 +208,57 @@ a.liked,
 .dt_mainmeta nav h2 {
     color: #000;
 }
+
+.headitems a#dooplay_signout {
+    padding: 10px 15px;
+    float: left;
+}
+
+.dtuser .gravatar .image {
+    float: left;
+    width: auto;
+    height: auto;
+    position: relative;
+}
+
+#tabs {
+    margin: 10px 0;
+}
+
+.tabs-nav {
+    display: table;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.tabs-nav li {
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+.tabs-nav a {
+    color: #222d34;
+    padding: 10px 20px;
+    float: left;
+    font-size: 13px;
+    border-radius: 3px;
+    font-weight: 500;
+}
+
+.tabs-nav a.active {
+    padding: 10px 20px;
+    float: left;
+    font-size: 13px;
+    border-radius: 3px;
+    font-weight: 500;
+    background: #dd3333;
+    color: #fff;
+}
+
+
+/*.tabs-item {
+    padding: 15px;
+}
+*/

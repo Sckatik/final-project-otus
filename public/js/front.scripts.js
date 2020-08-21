@@ -71,6 +71,36 @@ jQuery(document).ready(function($) {
         $('.tab-content li.sbox').css('display', 'none').eq(index).css('display', 'block');
     })
 
+    /* $('.idTabs li').not('.selected').click(function() {
+         console.log('123');
+         var index = $(this).index();
+         var id = $(this).attr("id");
+         var content = $('.content').eq(index);
+         $(this).addClass('selected').siblings().removeClass('selected');
+         //$(".upge#" + id).css('display', 'block');
+         $(".upge#" + id).css('display', 'none').eq(index).css('display', 'block');
+     })*/
+
+    var tab = $('#tabs .content > div');
+    tab.hide().filter(':first').show();
+    $('#tabs .tabs-nav a').click(function() {
+        tab.hide();
+        tab.filter(this.hash).show();
+        $('#tabs .tabs-nav a').removeClass('active');
+        $(this).addClass('active');
+        return false;
+    }).filter(':first').click();
+
+    $('.tabs-target').click(function() {
+        $('#tabs .tabs-nav a[href=' + $(this).data('id') + ']').click();
+    });
+
+    /* $('.idTabs li').not('.selected').click(function() {
+         $(this)
+             .addClass('selected').siblings().removeClass('selected')
+             .closest('.content').find('.upge').removeClass('active').eq($(this).index()).addClass('active');
+     });*/
+
     $('.tab-title li:first').addClass('active');
     $('.tab-content li:first').css('display', 'block');
 
@@ -83,6 +113,38 @@ jQuery(document).ready(function($) {
     $(document).on('click', '#c_loginbox', function() {
         $(".login_box ").hide();
     });
+
+    $(document).on('click', '#dooplay_login_btn', function(event) {
+        event.preventDefault();
+        console.log('1');
+        var login = $("#login").val(),
+            password = $("#password").val();
+
+        $.ajax({
+
+            url: '/login',
+
+            type: "POST",
+
+            data: { email: login, password: password },
+
+            headers: {
+
+                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+
+            },
+
+            success: function(data, textStatus, xhr) {
+                console.log(xhr.status);
+            }
+
+        });
+
+
+    });
+
+
+
 
     // Keup
     $(document).keyup(function(e) {

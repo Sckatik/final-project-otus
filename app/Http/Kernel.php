@@ -5,6 +5,8 @@ namespace App\Http;
 use App\Http\Middleware\Localize;
 use App\Http\Middleware\LogRequests;
 use App\Http\Middleware\ShareCommonData;
+use App\Http\Middleware\UserVerify;
+
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -57,6 +59,7 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
+        'userVerify' => UserVerify::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
