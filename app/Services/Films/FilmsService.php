@@ -66,10 +66,7 @@ class FilmsService
     */
     public function show(string $genre, string $slug)
     {
-        //dd($this->filmRepository->findFilmByGenreAndSlug($genre, $slug));
-
         return $this->showFilmHandler->handle($genre,$slug);
-  
     }
 
     /**
@@ -78,6 +75,33 @@ class FilmsService
     public function searchFilms(): LengthAwarePaginator
     {
         return $this->filmRepository->search();
+    }
+
+    public function getFilmByGenre($genre):Film
+    {
+
+        $test = Film::join('genres', function ($join) {
+            $join->on('films.id', '=', 'genres.film_id')
+                 ->where('genres.slug', '=', 'drama');
+        })
+        ->get();
+        dd($test);
+        /*$films = Film::where('title', 'like', "%" . $name . "%")
+        ->orderBy('id', 'desc')
+        ->paginate();
+        -*/
+
+    }
+
+
+    /**
+     * @param int $limit
+     * @param int $offset
+     * @return Collection
+     */
+    public function getFilmsInSlider(): Collection
+    {
+       // return $this->filmRepository->getList($limit, $offset);
     }
 
     /**

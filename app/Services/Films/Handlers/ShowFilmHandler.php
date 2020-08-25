@@ -6,6 +6,7 @@ namespace App\Services\Films\Handlers;
 use App\Models\Film;
 use App\Services\Films\Repositories\EloquentFilmRepository;
 use App\Services\Genres\Repositories\EloquentGenreRepository;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class ShowFilmHandler
 {
@@ -25,25 +26,33 @@ class ShowFilmHandler
      * показ фильма
      * если запрашиваемый фильм не содержит переданный жанр
      * возвращаем ошибку
-     * @param array $data
-     * @return Film
+     * @param string $genre
+     * @param string $slug
+     * @return Film|LengthAwarePaginator
      */
-    public function handle(string $genre, string $slug): Film
+    public function handle(string $genre, string $slug)
     {
+   
         //показываем список фильмов по жанру
         if($genre=="category"){
-            echo '123';
+            $film = $this->filmRepository->getFilmByGenre($slug);
+            $film->test = 'sdfsdf';
         }
         else{
             $film = $this->filmRepository->findFilmByGenreAndSlug($genre, $slug);
 
+       
             if ($film->getRelations()['genres']->isEmpty()) {
                 abort(404);
             } else {
+                $findGenre = false;
                 foreach ($film->getRelations()['genres']->all() as $item) {
-                    if ($item->slug!=$genre) {
-                        abort(404);
+                    if ($item->slug==$genre) {
+                        $findGenre = true;
                     }
+                }
+                if(!$findGenre){
+                    abort(404);
                 }
             }
          

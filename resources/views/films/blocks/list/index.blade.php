@@ -3,3 +3,4 @@
 <div class="items">
     @each('films.blocks.list.item', $films, 'film')
 </div>
+{{ $films->links() }}

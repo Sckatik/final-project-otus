@@ -5,8 +5,9 @@
 		<img src="https://sckatik.ru/wp-content/uploads/2020/04/x1000-3-185x278.jpg" alt="{{ $film['title'] }}">
 		<div class="rating">
 			<span class="icon-star2"></span>5.56</div>
-		<div class="mepo"></div>
-		<a href="https://sckatik.ru/triller/film-omen-pererozhdenie-the-prodigy-2019-smotret-onlajn-v-hd-720-kachestve/">
+        <div class="mepo"></div>
+
+		<a href="/{{ $film['slug'] }}/{{ $film['filmSlug'] }}">
 			<div class="see"></div>
 		</a>
 	</div>

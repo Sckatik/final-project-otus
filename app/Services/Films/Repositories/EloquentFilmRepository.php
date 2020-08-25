@@ -5,8 +5,8 @@ namespace App\Services\Films\Repositories;
 use App\Models\Film;
 use App\Models\Genre;
 use Illuminate\Database\Eloquent\Builder;
-
-//use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 
 class EloquentFilmRepository implements FilmRepositoryInterface
@@ -20,7 +20,7 @@ class EloquentFilmRepository implements FilmRepositoryInterface
     {
         return Film::All();
     }
-    
+
     public function find(int $id)
     {
         return Film::find($id);
@@ -64,7 +64,7 @@ class EloquentFilmRepository implements FilmRepositoryInterface
 
     public function createFromArray(array $data): Film
     {
-    
+
         return Film::create($data);
     }
 
@@ -82,7 +82,19 @@ class EloquentFilmRepository implements FilmRepositoryInterface
     }
 
 
-    
+    public function getFilmByGenre($genre):LengthAwarePaginator
+    {
+        $films = Film::join('genres', function ($join) {
+            $join->on('films.id', '=', 'genres.film_id');
+        })->where('genres.slug', '=', $genre)
+        ->select('films.id','genres.slug','films.slug as filmSlug')
+        ->paginate();
+        return $films;
+    }
+
+
+
+
 
     private function applyFilters(Builder $builder, array $filters)
     {

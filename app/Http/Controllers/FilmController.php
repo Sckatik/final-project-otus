@@ -50,8 +50,18 @@ class FilmController extends Controller
     public function show($genre,$slug)
     {
         $film = $this->filmsService->show($genre, $slug);
-        return view('film.index', [
-             'film' => $film,
-        ])->render();
+
+        if($genre=="category"){
+            //dd($film);
+            return view('films.index', [
+                'films' =>  $film
+            ])->render();
+
+        }
+        else{
+            return view('film.index', [
+                'film' => $film,
+            ])->render();
+        }
     }
 }
