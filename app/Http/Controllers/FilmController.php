@@ -46,4 +46,12 @@ class FilmController extends Controller
              ])->render();
         });
     }
+
+    public function show($genre,$slug)
+    {
+        $film = $this->filmsService->show($genre, $slug);
+        return view('film.index', [
+             'film' => $film,
+        ])->render();
+    }
 }

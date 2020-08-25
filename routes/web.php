@@ -51,6 +51,11 @@ Route::name('cms.')->group(function () {
 
 Route::get('/films', 'FilmController@index')->name('films');
 
+Route::get('/{genre}/{slug}', 'FilmController@show');
+
+//Route::get('/category/{genre}', 'FilmController@showGenre');
+
+//Route::get('/films/{category}/{slug}', 'FilmController@show')->name('films');
 
 Route::view('/', 'home');
 

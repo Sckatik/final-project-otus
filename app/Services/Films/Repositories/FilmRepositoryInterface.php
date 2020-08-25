@@ -19,5 +19,7 @@ interface FilmRepositoryInterface
 
     public function createFromArray(array $data): Film;
 
+    public function findFilmByGenreAndSlug(string $genre, string $slug): Film;
+    
     public function updateFromArray(Film $film, array $data);
 }

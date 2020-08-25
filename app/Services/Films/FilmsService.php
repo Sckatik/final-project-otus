@@ -3,8 +3,10 @@
 namespace App\Services\Films;
 
 use App\Models\Film;
+use App\Models\Genre;
 use App\Services\Films\Handlers\CreateFilmHandler;
 use App\Services\Films\Handlers\IndexFilmHandler;
+use App\Services\Films\Handlers\ShowFilmHandler;
 use App\Services\Films\Repositories\FilmRepositoryInterface;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
@@ -23,11 +25,13 @@ class FilmsService
     public function __construct(
         IndexFilmHandler $indexFilmHandler,
         CreateFilmHandler $createFilmHandler,
+        ShowFilmHandler $showFilmHandler,
         FilmRepositoryInterface $filmRepository,
         CachedFilmRepositoryInterface $cachedFilmRepository
     ) {
         $this->indexFilmHandler = $indexFilmHandler;
         $this->createFilmHandler = $createFilmHandler;
+        $this->showFilmHandler = $showFilmHandler;
         $this->filmRepository = $filmRepository;
         $this->cachedFilmRepository = $cachedFilmRepository;
     }
@@ -53,6 +57,19 @@ class FilmsService
     public function findFilm(int $id)
     {
         return $this->filmRepository->find($id);
+    }
+
+    /**
+     * @param string $genre
+     * @param string $slug
+     * @return Film
+    */
+    public function show(string $genre, string $slug)
+    {
+        //dd($this->filmRepository->findFilmByGenreAndSlug($genre, $slug));
+
+        return $this->showFilmHandler->handle($genre,$slug);
+  
     }
 
     /**

@@ -1,46 +1,38 @@
 <?php
 
-namespace App\Services\Films\Repositories;
+namespace App\Services\Genres\Repositories;
 
-use App\Models\Film;
 use App\Models\Genre;
 use Illuminate\Database\Eloquent\Builder;
 
-//use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
-
-class EloquentFilmRepository implements FilmRepositoryInterface
+class EloquentGenreRepository implements GenreRepositoryInterface
 {
-    const DEFAULT_LIST_CACHE_TTL = 300;
 
     /*
     * выводим без пагинации для тестирования кеширования
     */
     public function index()
     {
-        return Film::All();
+        return Genre::All();
     }
     
     public function find(int $id)
     {
-        return Film::find($id);
+        return Genre::find($id);
     }
 
-    public function getList(int $limit, int $offset, int $remember = self::DEFAULT_LIST_CACHE_TTL)
+    public function getList(int $limit, int $offset)
     {
-        $query = Film::query();
+        $query = Genre::query();
         $query->limit($limit);
         $query->offset($offset);
-
-        $query->remember($remember)
-            ->cacheTags('films');
-
         return $query->get();
     }
 
     public function search(array $filters = [])
     {
-        $query = Film::query();
+        $query = Genre::query();
         $this->applyFilters($query, $filters);
         return $query->paginate();
     }
@@ -53,36 +45,26 @@ class EloquentFilmRepository implements FilmRepositoryInterface
     public function searchByNames(string $name = '')
     {
         if ($name) {
-            $films = Film::where('title', 'like', "%" . $name . "%")
+            $genres = Genre::where('title', 'like', "%" . $name . "%")
                 ->orderBy('id', 'desc')
                 ->paginate();
         } else {
-            $films = Film::orderBy('id', 'desc')->paginate();
+            $genres = Genre::orderBy('id', 'desc')->paginate();
         }
-        return $films;
+        return $genres;
     }
 
-    public function createFromArray(array $data): Film
+    public function createFromArray(array $data): Genre
     {
     
-        return Film::create($data);
+        return Genre::create($data);
     }
 
-    public function updateFromArray(Film $film, array $data)
+    public function updateFromArray(Genre $film, array $data)
     {
-        $film->update($data);
-        return $film;
+        $genre->update($data);
+        return $genre;
     }
-
-    public function findFilmByGenreAndSlug(string $genre, string $slug):Film
-    {
-        $film = Film::where('slug', $slug)->firstOrFail();
-        $film->genres;
-        return $film;
-    }
-
-
-    
 
     private function applyFilters(Builder $builder, array $filters)
     {
