@@ -16,7 +16,7 @@ class AccountController extends Controller
         FilmsService $filmsService
     ) {
         $this->filmsService = $filmsService;
-       // $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**

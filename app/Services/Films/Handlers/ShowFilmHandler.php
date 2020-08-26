@@ -32,7 +32,7 @@ class ShowFilmHandler
      */
     public function handle(string $genre, string $slug)
     {
-   
+
         //показываем список фильмов по жанру
         if($genre=="category"){
             $film = $this->filmRepository->getFilmByGenre($slug);
@@ -41,7 +41,6 @@ class ShowFilmHandler
         else{
             $film = $this->filmRepository->findFilmByGenreAndSlug($genre, $slug);
 
-       
             if ($film->getRelations()['genres']->isEmpty()) {
                 abort(404);
             } else {
@@ -55,7 +54,7 @@ class ShowFilmHandler
                     abort(404);
                 }
             }
-         
+
         }
         return $film;
     }

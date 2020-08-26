@@ -76,7 +76,8 @@ class Film extends Model
         'slug',
         'status',
         'content',
-        'year'
+        'year',
+        'image'
     ];
 
     public function actors()

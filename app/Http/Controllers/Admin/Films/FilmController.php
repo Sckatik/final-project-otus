@@ -72,6 +72,7 @@ class FilmController extends Controller
             ]);
             return  abort(403, 'Нет прав на создание фильма', []);
         }
+       // $genre = $this->filmsService->createFilm($data);
         // добавил в шаблон переменную moderator для проверки
         // модератор может создавать фильмы только не опубликованными
         return view('admin.films.create', ['moderator'=>$this->getCurrentUser()->isModerator()]);

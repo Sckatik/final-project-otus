@@ -16,5 +16,6 @@ return [
     "filmYear"=>"Year Film",
     "filmStatus"=>"Status",
     "filmStatusPublished"=> "Published",
-    "filmStatusNotPublished"=> "NotPublished"
+    "filmStatusNotPublished"=> "NotPublished",
+    'filmGenre'=> "Жанр фильма"
 ];

@@ -77,23 +77,6 @@ class FilmsService
         return $this->filmRepository->search();
     }
 
-    public function getFilmByGenre($genre):Film
-    {
-
-        $test = Film::join('genres', function ($join) {
-            $join->on('films.id', '=', 'genres.film_id')
-                 ->where('genres.slug', '=', 'drama');
-        })
-        ->get();
-        dd($test);
-        /*$films = Film::where('title', 'like', "%" . $name . "%")
-        ->orderBy('id', 'desc')
-        ->paginate();
-        -*/
-
-    }
-
-
     /**
      * @param int $limit
      * @param int $offset

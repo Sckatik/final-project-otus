@@ -24,6 +24,7 @@ class CreateFilmHandler
      */
     public function handle(array $data): Film
     {
+        //добавить запись в жанр
         return $this->filmRepository->createFromArray($data);
     }
 

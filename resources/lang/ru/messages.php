@@ -30,5 +30,6 @@ return [
     "filmYear"=>"Год фильма",
     "filmStatus"=>"Статус",
     "filmStatusPublished"=> "Опубликовано",
-    "filmStatusNotPublished"=> "Не опубликовано"
+    "filmStatusNotPublished"=> "Не опубликовано",
+    'filmGenre'=> "Жанр фильма"
 ];

@@ -18,6 +18,11 @@
 </div>
 
 <div class="form-group">
+    {{ Form::label('genre', trans('messages.filmGenre')) }}
+    {{ Form::select('genre', []) }}
+</div>
+
+<div class="form-group">
     {{ Form::label('slug', trans('messages.filmSlug')) }}
     {{ Form::text('slug', null, array('class'=>'form-control')) }}
 </div>

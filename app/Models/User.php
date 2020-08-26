@@ -50,9 +50,13 @@ class User extends Authenticatable
         'firstname',
         'lastname',
         'display_name',
+        'website',
+        'fb_url',
+        'vk_url',
+        'ok_url',
         'email',
         'password',
-        'level',
+        'level'
     ];
 
     /**
