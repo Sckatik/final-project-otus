@@ -1,1 +1,1 @@
-<a href="/{{ $genre['slug'] }}">{{ $genre['name'] }}</a>
+<a href="/category/{{ $genre['slug'] }}">{{ $genre['name'] }}</a>

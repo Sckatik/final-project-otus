@@ -4,7 +4,7 @@ namespace App\Services\Genres\Repositories;
 
 use App\Models\Genre;
 use Illuminate\Database\Eloquent\Builder;
-
+use Illuminate\Database\Eloquent\Collection;
 
 class EloquentGenreRepository implements GenreRepositoryInterface
 {
@@ -22,11 +22,9 @@ class EloquentGenreRepository implements GenreRepositoryInterface
         return Genre::find($id);
     }
 
-    public function getList(int $limit, int $offset)
+    public function getList():Collection
     {
         $query = Genre::query();
-        $query->limit($limit);
-        $query->offset($offset);
         return $query->get();
     }
 

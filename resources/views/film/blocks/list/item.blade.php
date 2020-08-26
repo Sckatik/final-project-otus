@@ -12,10 +12,9 @@
 	</div>
 	<div class="data">
 		<h3>
-				<!--<span class="flag" style="background-image: url()"></span> -->
-                <a href="#">
-                    {{ $film['title'] }}
-                </a>
+            <a href="#">
+                {{ $film['title'] }}
+            </a>
         </h3>
         <span>&nbsp;</span>
     </div>

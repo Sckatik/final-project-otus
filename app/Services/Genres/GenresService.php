@@ -14,7 +14,7 @@ class GenresService
     private $genreRepository;
 
     public function __construct(
-        FilmRepositoryInterface $genreRepository
+        GenreRepositoryInterface $genreRepository
     ) {
         $this->genreRepository = $genreRepository;
     }
@@ -41,9 +41,9 @@ class GenresService
      * @param int $offset
      * @return Collection
      */
-    public function getGenres(int $limit, int $offset): Collection
+    public function getGenres(): Collection
     {
-        return $this->genreRepository->getList($limit, $offset);
+        return $this->genreRepository->getList();
     }
 
     /**

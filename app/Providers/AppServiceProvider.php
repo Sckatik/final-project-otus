@@ -5,6 +5,9 @@ namespace App\Providers;
 use App\Services\Films\Repositories\FilmRepositoryInterface;
 use App\Services\Films\Repositories\EloquentFilmRepository;
 
+use App\Services\Genres\Repositories\GenreRepositoryInterface;
+use App\Services\Genres\Repositories\EloquentGenreRepository;
+
 use App\Services\Pages\Repositories\PageRepositoryInterface;
 use App\Services\Pages\Repositories\EloquentPageRepository;
 
@@ -60,6 +63,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // $this->app->bind(FooInterface::class, Foo::class);
         $this->app->bind(FilmRepositoryInterface::class, EloquentFilmRepository::class);
+        $this->app->bind(GenreRepositoryInterface::class, EloquentGenreRepository::class);
         $this->app->bind(PageRepositoryInterface::class, EloquentPageRepository::class);
         $this->app->bind(CachedFilmRepositoryInterface::class, CachedFilmRepository::class);
     }

@@ -1,9 +1,11 @@
 <div class="menu-header-menu-container">
     <ul id="main-header" class="main-header">
-        <li id="menu-item-3315" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3315">
+
+       <li id="menu-item-3315" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3315">
             <a href="#">Жанры</a>
             <ul class="sub-menu">
-                <li id="menu-item-3326" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3326"><a href="https://sckatik.ru/category/anime/">Аниме</a></li>
+                @each('blocks.navbars.list.item', $genres, 'genre')
+               <!-- <li id="menu-item-3326" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3326"><a href="https://sckatik.ru/category/anime/">Аниме</a></li>
                 <li id="menu-item-3327" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3327"><a href="https://sckatik.ru/category/biografiya/">Биография</a></li>
                 <li id="menu-item-3328" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3328"><a href="https://sckatik.ru/category/boeviki/">Боевики</a></li>
                 <li id="menu-item-3329" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3329"><a href="https://sckatik.ru/category/vestern/">вестерн</a></li>
@@ -30,6 +32,7 @@
                 <li id="menu-item-3350" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3350"><a href="https://sckatik.ru/category/fantastika/">Фантастика</a></li>
                 <li id="menu-item-3351" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3351"><a href="https://sckatik.ru/category/fentezi/">Фэнтези</a></li>
                 <li id="menu-item-3352" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3352"><a href="https://sckatik.ru/category/erotika/">эротика</a></li>
+               -->
             </ul>
         </li>
     </ul>

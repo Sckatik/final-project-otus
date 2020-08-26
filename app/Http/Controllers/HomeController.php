@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Film;
 use App\Services\Films\FilmsService;
+use App\Services\Genres\GenresService;
 use View;
 use Illuminate\Pagination\Paginator;
 use Cache;
@@ -15,9 +16,11 @@ class HomeController extends Controller
     protected $filmsService;
 
     public function __construct(
-        FilmsService $filmsService
+        FilmsService $filmsService,
+        GenresService $genresService
     ) {
         $this->filmsService = $filmsService;
+        $this->genresService = $genresService;
     }
 
     /**
@@ -27,7 +30,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //dd($this->filmsService->getFilmByGenre('test'));
         return view('home');
     }
 }

@@ -11,7 +11,7 @@ interface GenreRepositoryInterface
 
     public function find(int $id);
 
-    public function getList(int $limit, int $offset);
+    public function getList():Collection;
 
     public function searchByNames(string $name = '');
 
