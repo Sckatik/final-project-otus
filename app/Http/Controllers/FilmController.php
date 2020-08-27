@@ -40,27 +40,27 @@ class FilmController extends Controller
     {
         $key = $request->getUri();
         return Cache::remember($key, 60, function () {
-            $films = $this->filmsService->indexFilm();
+            $genreFilm = $this->filmsService->indexFilm();
             return view('films.index', [
-                 'films' => $films,
+                 'genreFilm' => $genreFilm,
              ])->render();
         });
     }
 
     public function show($genre,$slug)
     {
-        $film = $this->filmsService->show($genre, $slug);
+        $show = $this->filmsService->show($genre, $slug);
 
         if($genre=="category"){
-            //dd($film);
+            //dump($show);
             return view('films.index', [
-                'films' =>  $film
+                'genreFilm' => $show
             ])->render();
 
         }
         else{
             return view('film.index', [
-                'film' => $film,
+                'film' => $show,
             ])->render();
         }
     }

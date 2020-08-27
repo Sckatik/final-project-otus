@@ -87,7 +87,7 @@ class Film extends Model
 
     public function genres()
     {
-        return $this->hasMany(Genre::class);
+        return $this->belongsToMany(Genre::class);
     }
 
     public function producers()

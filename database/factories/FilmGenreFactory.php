@@ -4,7 +4,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(\App\Models\GenreAndFilm::class, function (Faker $faker) {
+$factory->define(\App\Models\FilmGenre::class, function (Faker $faker) {
     $createdAt = $faker->dateTimeBetween('-3 months','-2 months');
     return [
         'film_id'=>$faker->numberBetween(1,5),

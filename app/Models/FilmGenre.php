@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-class GenreAndFilm extends Model
+class FilmGenre extends Model
 {
     //
 
-    protected $table = 'genres_and_films';
+    protected $table = 'film_genre';
 
     protected $fillable = [
         'id',

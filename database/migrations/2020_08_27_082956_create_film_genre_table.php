@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGenresAndFilms extends Migration
+class CreateFilmGenreTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateGenresAndFilms extends Migration
      */
     public function up()
     {
-        Schema::create('genres_and_films', function (Blueprint $table) {
+        Schema::create('film_genre', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('film_id')->unsigned()->nullable()->comment('id фильма');
             $table->bigInteger('genre_id')->unsigned()->nullable()->comment('id жанра');
@@ -21,11 +21,11 @@ class CreateGenresAndFilms extends Migration
         });
 
 
-        Schema::table('genres_and_films', function (Blueprint $table) {
+        Schema::table('film_genre', function (Blueprint $table) {
             $table->foreign('film_id')->references('id')->on('films');
         });
 
-        Schema::table('genres_and_films', function (Blueprint $table) {
+        Schema::table('film_genre', function (Blueprint $table) {
             $table->foreign('genre_id')->references('id')->on('genres');
         });
     }
@@ -37,14 +37,14 @@ class CreateGenresAndFilms extends Migration
      */
     public function down()
     {
-        Schema::table('genres_and_films', function (Blueprint $table) {
+        Schema::table('film_genre', function (Blueprint $table) {
             $table->foreign('film_id')->references('id')->on('films');
         });
 
-        Schema::table('genres_and_films', function (Blueprint $table) {
+        Schema::table('film_genre', function (Blueprint $table) {
             $table->foreign('genre_id')->references('id')->on('genres');
         });
 
-        Schema::dropIfExists('genres_and_films');
+        Schema::dropIfExists('film_genre');
     }
 }

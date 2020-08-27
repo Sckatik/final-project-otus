@@ -3,6 +3,7 @@
 namespace App\Services\Films\Repositories;
 
 use App\Models\Film;
+use App\Models\Genre;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
@@ -18,7 +19,7 @@ interface FilmRepositoryInterface
 
     public function search(array $filters = []);
 
-    public function getFilmByGenre(string $genre): LengthAwarePaginator;
+    public function getFilmByGenre(string $genre): Genre;
 
     public function createFromArray(array $data): Film;
 

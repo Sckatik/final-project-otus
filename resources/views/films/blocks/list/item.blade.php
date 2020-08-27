@@ -1,5 +1,4 @@
-<?php /** @var \App\Models\Film $film */ 
-//dd($film);?>
+<?php /** @var \App\Models\Film $film */ ?>
 <article id="post-{{ $film['id'] }}" class="item movies"> 	
     <div class="poster"> 
 		<img src="https://sckatik.ru/wp-content/uploads/2020/04/x1000-3-185x278.jpg" alt="{{ $film['title'] }}">
@@ -7,7 +6,7 @@
 			<span class="icon-star2"></span>5.56</div>
         <div class="mepo"></div>
 
-		<a href="/{{ $film['slug'] }}/{{ $film['filmSlug'] }}">
+		<a href="/{{ $film->genres()->first()->slug }}/{{ $film['slug'] }}">
 			<div class="see"></div>
 		</a>
 	</div>

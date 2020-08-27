@@ -1,3 +1,3 @@
 <header>
-    <h1>2019</h1>
-    </header>
+    <h1>{{ $genreFilm->name }}</h1>
+</header>

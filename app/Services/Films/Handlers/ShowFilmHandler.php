@@ -35,17 +35,16 @@ class ShowFilmHandler
 
         //показываем список фильмов по жанру
         if($genre=="category"){
-            $film = $this->filmRepository->getFilmByGenre($slug);
-            $film->test = 'sdfsdf';
+            $genreFilm = $this->filmRepository->getFilmByGenre($slug);
+            return $genreFilm;
         }
         else{
             $film = $this->filmRepository->findFilmByGenreAndSlug($genre, $slug);
-
-            if ($film->getRelations()['genres']->isEmpty()) {
+            if ($film->genres->isEmpty()) {
                 abort(404);
             } else {
                 $findGenre = false;
-                foreach ($film->getRelations()['genres']->all() as $item) {
+                foreach ($film->genres as $item) {
                     if ($item->slug==$genre) {
                         $findGenre = true;
                     }
@@ -55,8 +54,10 @@ class ShowFilmHandler
                 }
             }
 
+            return $film;
+
         }
-        return $film;
+     
     }
 
 }

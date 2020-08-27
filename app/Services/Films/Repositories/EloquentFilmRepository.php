@@ -3,7 +3,6 @@
 namespace App\Services\Films\Repositories;
 
 use App\Models\Film;
-use App\Models\GenreAndFilm;
 use App\Models\Genre;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -80,39 +79,27 @@ class EloquentFilmRepository implements FilmRepositoryInterface
     {
         $film = Film::where('slug', $slug)->firstOrFail();
         $film->genres;
+        //dd($film->genres);
         return $film;
     }
 
 
-    public function getFilmByGenre($genre):LengthAwarePaginator
+    public function getFilmByGenre($genre):Genre
     {
 
-        /*$test =  Film::join('genres_and_films', function ($join) {
-            $join->on('films.id', '=', 'genres_and_films.film_id');
-        })->join('genres', function ($join) {
-            $join->on('genres.id', '=', 'genres_and_films.genre_id');
-        })
-        ->where('genres_and_films.genre_id', '=', 2)
-        ->select('films.id','films.title','films.content','genres.slug', 'genres.name','films.slug as filmSlug')
-        ->get();
-        */
-        $test = GenreAndFilm::where('genre_id',1)->paginate();
-        foreach($test as $item){
-            $film = Film::where('id',$item->film_id)->get();
-            dump($film);
-        }
-        dd('1');
-
-
-
-        //->select('films.id','genres.slug','films.slug as filmSlug')
-        //->paginate();
-        return $films;
+        $genre = Genre::where("slug",$genre)->firstOrFail();
+        $genre->films;
+        return $genre;
     }
 
 
 
-
+    public function paginate($items, $perPage = 15, $page = null, $options = [])
+    {
+        $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+        return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
+    }
 
     private function applyFilters(Builder $builder, array $filters)
     {
