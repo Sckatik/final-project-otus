@@ -11,3 +11,11 @@
 @include('admin.films.blocks.form.edit')
 
 @stop
+
+@section('js')
+    <script> 
+    console.log('Hi!'); 
+    $(".select2-purple").select2();
+    </script>
+@stop
+

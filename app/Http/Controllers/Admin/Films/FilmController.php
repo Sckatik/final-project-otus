@@ -11,6 +11,8 @@ use App\Http\Controllers\Admin\Films\Requests\StoreFilmRequest;
 use App\Http\Controllers\Admin\Films\Requests\UpdateFilmRequest;
 use App\Models\Film;
 use App\Services\Films\FilmsService;
+use App\Services\Genres\GenresService;
+use App\Services\FilmsGenres\FilmsGenresService;
 use Illuminate\Http\Request;
 use App\Jobs\FilmNotifyJob;
 use App\Jobs\FilmPrepareJob;
@@ -28,11 +30,17 @@ use View;
 class FilmController extends Controller
 {
     protected $filmsService;
+    protected $genresService;
+    protected $filmsGenresService;
 
     public function __construct(
-        FilmsService $filmsService
+        FilmsService $filmsService,
+        GenresService $genresService,
+        FilmsGenresService $filmsGenresService
     ) {
         $this->filmsService = $filmsService;
+        $this->genresService = $genresService;
+        $this->filmsGenresService = $filmsGenresService;
     }
     /**
      * Display a listing of the resource.
@@ -72,10 +80,15 @@ class FilmController extends Controller
             ]);
             return  abort(403, 'Нет прав на создание фильма', []);
         }
-       // $genre = $this->filmsService->createFilm($data);
+        $genres = $this->genresService->getGenres()->toArray();
         // добавил в шаблон переменную moderator для проверки
         // модератор может создавать фильмы только не опубликованными
-        return view('admin.films.create', ['moderator'=>$this->getCurrentUser()->isModerator()]);
+        return view('admin.films.create', 
+        [
+            'moderator'=>$this->getCurrentUser()->isModerator(),
+            'genres'=>$genres
+        ]
+    );
     }
 
     /**
@@ -132,8 +145,13 @@ class FilmController extends Controller
             ]);
             return  abort(403, 'Нет прав на редактирование фильма', []);
         }
+        $genres = $this->genresService->getGenres()->toArray();
+        $selectGenres = $this->filmsGenresService->getSelectGenreForFilm($genres, $film->id);
+        //нужно передать значения выбранных жанров
+
         return view('admin.films.edit', [
             'film' => $film,
+            'genres'=>$genres,
             'moderator'=>$this->getCurrentUser()->isModerator()
         ]);
     }
@@ -155,10 +173,13 @@ class FilmController extends Controller
             ]);
             return  abort(403, 'Нет прав на редактирование/обновление фильма', []);
         }
+        $data = $request->all();
 
-        $this->filmsService->updateFilm($film, $request->all());
+        $this->filmsService->updateFilm($film, $data);
 
-        $film->update($request->all());
+        if(isset($data['genres'])){
+            $this->filmsGenresService->updateFilmGenre($film->id, $data['genres']);
+        }
 
         return redirect(RouteBuilder::localeRoute('cms.films.index'));
     }

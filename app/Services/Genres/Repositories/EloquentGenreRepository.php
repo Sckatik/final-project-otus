@@ -4,7 +4,7 @@ namespace App\Services\Genres\Repositories;
 
 use App\Models\Genre;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
 class EloquentGenreRepository implements GenreRepositoryInterface
 {
@@ -22,10 +22,11 @@ class EloquentGenreRepository implements GenreRepositoryInterface
         return Genre::find($id);
     }
 
-    public function getList():Collection
+    public function getList(): Collection
     {
-        $query = Genre::query();
-        return $query->get();
+        $query = Genre::query()->pluck('name', 'id');
+        //dd($query);
+        return $query;
     }
 
     public function search(array $filters = [])

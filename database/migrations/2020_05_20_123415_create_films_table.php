@@ -16,7 +16,7 @@ class CreateFilmsTable extends Migration
         Schema::create('films', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title')->comment('Название фильма');
-            $table->string('image')->comment('Постер фильма');
+            $table->string('image')->comment('Постер фильма')->nullable();
             $table->string('meta_title')->comment('Название фильма для поисковой системы')->nullable();
             $table->string('meta_description')->comment('Описание для поисковой системы')->nullable();
             $table->string('keywords')->comment('Ключевые слова для поисковой системы')->nullable();
@@ -24,7 +24,6 @@ class CreateFilmsTable extends Migration
             $table->string('status')->comment('Опубликовано или нет');
             $table->text('content')->comment('Описание фильма')->nullable();
             $table->string('year')->comment('Год фильма');
-            $table->string('favorites')->comment('Год фильма');
             $table->timestamps();
         });
 
