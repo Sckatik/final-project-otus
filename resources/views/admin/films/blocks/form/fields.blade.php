@@ -20,8 +20,12 @@
     <div class="form-group">
         {{ Form::label('genre', trans('messages.filmGenre')) }}
         <select style="width:100%;" name="genres[]" class="select2-purple" multiple="multiple">
-            @foreach($genres as $id=>$genre)
-                <option value="{{$id}}" >{{$genre}}</option>
+            @foreach($genres as $item)
+                @if($item['select'])
+                    <option selected value="{{ $item['id'] }}">{{ $item['name'] }}</option>
+                @else
+                    <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
+                @endIf
             @endforeach
         </select>
     </div>

@@ -80,15 +80,16 @@ class FilmController extends Controller
             ]);
             return  abort(403, 'Нет прав на создание фильма', []);
         }
-        $genres = $this->genresService->getGenres()->toArray();
+
+        $genres = $this->filmsGenresService->getSelectGenreForFilm();
         // добавил в шаблон переменную moderator для проверки
         // модератор может создавать фильмы только не опубликованными
-        return view('admin.films.create', 
-        [
-            'moderator'=>$this->getCurrentUser()->isModerator(),
-            'genres'=>$genres
-        ]
-    );
+        return view('admin.films.create',
+            [
+                'moderator'=>$this->getCurrentUser()->isModerator(),
+                'genres'=>$genres
+            ]
+        );
     }
 
     /**
@@ -145,13 +146,12 @@ class FilmController extends Controller
             ]);
             return  abort(403, 'Нет прав на редактирование фильма', []);
         }
-        $genres = $this->genresService->getGenres()->toArray();
-        $selectGenres = $this->filmsGenresService->getSelectGenreForFilm($genres, $film->id);
+        //$genres = $this->genresService->getGenres()->toArray();
+        $selectGenres = $this->filmsGenresService->getSelectGenreForFilm($film->id);
         //нужно передать значения выбранных жанров
-
         return view('admin.films.edit', [
             'film' => $film,
-            'genres'=>$genres,
+            'genres'=>$selectGenres,
             'moderator'=>$this->getCurrentUser()->isModerator()
         ]);
     }

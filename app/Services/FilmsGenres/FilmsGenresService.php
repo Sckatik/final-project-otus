@@ -4,6 +4,7 @@ namespace App\Services\FilmsGenres;
 
 use App\Models\FilmGenre;
 use App\Services\FilmsGenres\Repositories\FilmGenreRepositoryInterface;
+use App\Services\Genres\Repositories\GenreRepositoryInterface;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
@@ -14,9 +15,11 @@ class FilmsGenresService
     private $filmGenreRepository;
 
     public function __construct(
-        FilmGenreRepositoryInterface $filmGenreRepository
+        FilmGenreRepositoryInterface $filmGenreRepository,
+        GenreRepositoryInterface $genreRepository
     ) {
         $this->filmGenreRepository = $filmGenreRepository;
+        $this->genreRepository = $genreRepository;
     }
 
     /**
@@ -53,26 +56,27 @@ class FilmsGenresService
      * @param integer $filmId
      * @return array
      */
-    public function getSelectGenreForFilm(array $genres, int $filmId): array
+    public function getSelectGenreForFilm(int $filmId): array
     {
+        $genres = $this->genreRepository->getList();
         $selectGenre = $this->filmGenreRepository->searchByFilmId($filmId)->toArray();
         $arGenres = [];
-        foreach($genres as $id=>$item){
-            $findGenre = array_search($id, array_column($selectGenre, 'genre_id'));
+        foreach($genres as $item){
+            $findGenre = array_search($item->id, array_column($selectGenre, 'genre_id'));
             if($findGenre!==false){
-               $arGenres[] = [
-                   "id"=>$id,
-                   "name"=>$item,
-                   "select"=>true
-               ];
-            }
-            else{
                 $arGenres[] = [
-                    "id"=>$id,
-                    "name"=>$item,
-                    "select"=>false
+                    "id"=>$item->id,
+                    "name"=>$item->name,
+                    "select"=>true
                 ];
-            }
+             }
+             else{
+                 $arGenres[] = [
+                     "id"=>$item->id,
+                     "name"=>$item->name,
+                     "select"=>false
+                 ];
+             }
         }
 
         return $arGenres;

@@ -16,7 +16,7 @@ class EloquentGenreRepository implements GenreRepositoryInterface
     {
         return Genre::All();
     }
-    
+
     public function find(int $id)
     {
         return Genre::find($id);
@@ -24,8 +24,7 @@ class EloquentGenreRepository implements GenreRepositoryInterface
 
     public function getList(): Collection
     {
-        $query = Genre::query()->pluck('name', 'id');
-        //dd($query);
+        $query = Genre::query()->get();
         return $query;
     }
 
@@ -55,7 +54,7 @@ class EloquentGenreRepository implements GenreRepositoryInterface
 
     public function createFromArray(array $data): Genre
     {
-    
+
         return Genre::create($data);
     }
 
