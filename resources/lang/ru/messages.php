@@ -34,5 +34,7 @@ return [
     'filmGenre'=> "Жанр фильма",
     'displayInSlider'=>"Отображать в слайдере",
     'displayInSliderYes'=>"Да",
-    'displayInSliderNo'=>"Нет"
+    'displayInSliderNo'=>"Нет",
+    'typeFilm'=>"Тип фильма",
+    'image'=>"Постер к фильму"
 ];

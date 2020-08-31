@@ -20,5 +20,7 @@ return [
     'filmGenre'=> "Жанр фильма",
     'displayInSlider'=>"Display in slider",
     'displayInSliderYes'=>"Yes",
-    'displayInSliderNo'=>"No"
+    'displayInSliderNo'=>"No",
+    'typeFilm'=>"Type film",
+    'image'=>"Poster to film"
 ];

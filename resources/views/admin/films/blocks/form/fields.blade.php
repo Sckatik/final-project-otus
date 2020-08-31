@@ -46,16 +46,29 @@
         </div>
 </div>-->
 <div class="form-group">
-<select class="form-control yearsSelect" name="type" style="width: 100%;" tabindex="-1" aria-hidden="true">
-    <?//dump($typeFilms); ?>
-    @foreach($typeFilms as $item)
-        @if($item['select'])
-            <option selected value="{{ $item['id'] }}">{{ $item['name'] }}</option>
-        @else
-            <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
-        @endIf
-    @endforeach
-  </select>
+    {{ Form::label('type', trans('messages.typeFilm')) }}
+    <select class="form-control yearsSelect" name="type" style="width: 100%;" tabindex="-1" aria-hidden="true">
+        @foreach($typeFilms as $item)
+            @if($item['select'])
+                <option selected value="{{ $item['id'] }}">{{ $item['name'] }}</option>
+            @else
+                <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
+            @endIf
+        @endforeach
+    </select>
+</div>
+<div class="form-group">
+    {{ Form::label('image', trans('messages.image')) }}
+    <div class="input-group">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="exampleInputFile">
+          <label class="custom-file-label" for="exampleInputFile">Выберите файл</label>
+        </div>
+        <div class="input-group-append">
+          <span class="input-group-text" id="">Загрузить</span>
+        </div>
+    </div>
+
 </div>
 <div class="form-group">
     {{ Form::label('display_in_slider', trans('messages.displayInSlider')) }}
