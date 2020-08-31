@@ -24,6 +24,8 @@ class CreateFilmsTable extends Migration
             $table->string('status')->comment('Опубликовано или нет');
             $table->text('content')->comment('Описание фильма')->nullable();
             $table->string('year')->comment('Год фильма');
+            $table->boolean('display_in_slider')->comment('Отображать в слайдере на главной')->default(0);
+            $table->integer('type')->comment('из справочника типы фильма')->default(1);
             $table->timestamps();
         });
 

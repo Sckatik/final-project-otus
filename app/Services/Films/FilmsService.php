@@ -7,6 +7,7 @@ use App\Models\Genre;
 use App\Services\Films\Handlers\CreateFilmHandler;
 use App\Services\Films\Handlers\IndexFilmHandler;
 use App\Services\Films\Handlers\ShowFilmHandler;
+use App\Services\Films\Handlers\ShowFilmInSliderHandler;
 use App\Services\Films\Repositories\FilmRepositoryInterface;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
@@ -21,19 +22,23 @@ class FilmsService
     private $createFilmHandler;
     /** @var CachedFilmRepositoryInterface */
     private $cachedFilmRepository;
+    /** @var ShowFilmInSliderHandler */
+     private $showFilmInSliderHandler;
 
     public function __construct(
         IndexFilmHandler $indexFilmHandler,
         CreateFilmHandler $createFilmHandler,
         ShowFilmHandler $showFilmHandler,
         FilmRepositoryInterface $filmRepository,
-        CachedFilmRepositoryInterface $cachedFilmRepository
+        CachedFilmRepositoryInterface $cachedFilmRepository,
+        ShowFilmInSliderHandler $showFilmInSliderHandler
     ) {
         $this->indexFilmHandler = $indexFilmHandler;
         $this->createFilmHandler = $createFilmHandler;
         $this->showFilmHandler = $showFilmHandler;
         $this->filmRepository = $filmRepository;
         $this->cachedFilmRepository = $cachedFilmRepository;
+        $this->showFilmInSliderHandler = $showFilmInSliderHandler;
     }
 
     /**
@@ -48,6 +53,11 @@ class FilmsService
     public function indexFilm()
     {
         return $this->indexFilmHandler->handle();
+    }
+
+    public function filmsInSlider():Array
+    {
+        return $this->showFilmInSliderHandler->handle();
     }
 
     /**
@@ -75,16 +85,6 @@ class FilmsService
     public function searchFilms(): LengthAwarePaginator
     {
         return $this->filmRepository->search();
-    }
-
-    /**
-     * @param int $limit
-     * @param int $offset
-     * @return Collection
-     */
-    public function getFilmsInSlider(): Collection
-    {
-       // return $this->filmRepository->getList($limit, $offset);
     }
 
     /**

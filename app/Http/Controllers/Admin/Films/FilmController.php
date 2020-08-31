@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\Films\Requests\UpdateFilmRequest;
 use App\Models\Film;
 use App\Services\Films\FilmsService;
 use App\Services\Genres\GenresService;
+use App\Services\TypeFilms\TypeFilmsService;
 use App\Services\FilmsGenres\FilmsGenresService;
 use Illuminate\Http\Request;
 use App\Jobs\FilmNotifyJob;
@@ -32,15 +33,18 @@ class FilmController extends Controller
     protected $filmsService;
     protected $genresService;
     protected $filmsGenresService;
+    protected $typeFilmsService;
 
     public function __construct(
         FilmsService $filmsService,
         GenresService $genresService,
-        FilmsGenresService $filmsGenresService
+        FilmsGenresService $filmsGenresService,
+        TypeFilmsService $typeFilmsService
     ) {
         $this->filmsService = $filmsService;
         $this->genresService = $genresService;
         $this->filmsGenresService = $filmsGenresService;
+        $this->typeFilmsService = $typeFilmsService;
     }
     /**
      * Display a listing of the resource.
@@ -82,12 +86,14 @@ class FilmController extends Controller
         }
 
         $genres = $this->filmsGenresService->getSelectGenreForFilm();
+        $typeFilms = $this->typeFilmsService->indexTypeFilm();
         // добавил в шаблон переменную moderator для проверки
         // модератор может создавать фильмы только не опубликованными
         return view('admin.films.create',
             [
                 'moderator'=>$this->getCurrentUser()->isModerator(),
-                'genres'=>$genres
+                'genres'=>$genres,
+                'typeFilms'=>$typeFilms
             ]
         );
     }
@@ -148,10 +154,12 @@ class FilmController extends Controller
         }
         //$genres = $this->genresService->getGenres()->toArray();
         $selectGenres = $this->filmsGenresService->getSelectGenreForFilm($film->id);
+        $typeFilms = $this->typeFilmsService->indexTypeFilm($film->id);
         //нужно передать значения выбранных жанров
         return view('admin.films.edit', [
             'film' => $film,
             'genres'=>$selectGenres,
+            'typeFilms'=>$typeFilms,
             'moderator'=>$this->getCurrentUser()->isModerator()
         ]);
     }

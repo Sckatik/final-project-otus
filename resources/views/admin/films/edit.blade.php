@@ -16,6 +16,7 @@
     <script> 
     console.log('Hi!'); 
     $(".select2-purple").select2();
+    $(".yearsSelect").select2();
     </script>
 @stop
 

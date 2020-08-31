@@ -17,7 +17,6 @@ class IndexFilmHandler
     }
 
     /**
-     * @param array $data
      * @return array
      */
     public function handle(): array
@@ -40,7 +39,7 @@ class IndexFilmHandler
                 ];
             }
         }
-        
+
         return $allFilms;
     }
 }

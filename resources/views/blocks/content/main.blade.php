@@ -1,5 +1,7 @@
+
 <div id="slider-movies-tvshows" class="animation-1 slider">
-    <article class="item" id="post-1">
+    @each('blocks.content.sliderMain.item', $filmsInSlider, 'film')
+   <!-- <article class="item" id="post-1">
         <div class="image">
             <a href="#">
                 <img src="https://sckatik.ru/wp-content/uploads/2020/05/Wonder_Woman_hero_Wonder_Woman_2017_film_Gal_529948_3840x2400-300x188.jpg" />
@@ -49,7 +51,7 @@
             </a>
             <span class="item_type">Фильм</span>
         </div>
-    </article>
+    </article>-->
 </div>
 <header>
     <h2>Боевики</h2>

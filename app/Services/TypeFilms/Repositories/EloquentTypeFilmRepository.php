@@ -1,9 +1,7 @@
 <?php
 
-namespace App\Services\Films\Repositories;
+namespace App\Services\TypeFilms\Repositories;
 
-use App\Models\Film;
-use App\Models\FilmGenre;
 use App\Models\TypeFilm;
 use App\Models\Genre;
 use Illuminate\Database\Eloquent\Builder;
@@ -12,38 +10,42 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use DB;
 
 
-class EloquentFilmRepository implements FilmRepositoryInterface
+class EloquentTypeFilmRepository implements TypeFilmRepositoryInterface
 {
-    const DEFAULT_LIST_CACHE_TTL = 300;
 
     /*
     * выводим без пагинации для тестирования кеширования
     */
-    public function index()
+    public function index():Collection
     {
-        return Film::All();
+        return TypeFilm::All();
     }
 
     public function find(int $id)
     {
-        return Film::find($id);
+        return TypeFilm::find($id);
     }
 
-    public function getList(int $limit, int $offset, int $remember = self::DEFAULT_LIST_CACHE_TTL)
+    public function getList(int $limit, int $offset)
     {
-        $query = Film::query();
+        $query = TypeFilm::query();
         $query->limit($limit);
         $query->offset($offset);
-
-        $query->remember($remember)
-            ->cacheTags('films');
 
         return $query->get();
     }
 
+    public function getAllList()
+    {
+        $query = TypeFilm::query();
+        return $query->get();
+    }
+
+    
+
     public function search(array $filters = [])
     {
-        $query = Film::query();
+        $query = TypeFilm::query();
         $this->applyFilters($query, $filters);
         return $query->paginate();
     }
@@ -56,48 +58,27 @@ class EloquentFilmRepository implements FilmRepositoryInterface
     public function searchByNames(string $name = '')
     {
         if ($name) {
-            $films = Film::where('title', 'like', "%" . $name . "%")
+            $films = TypeFilm::where('title', 'like', "%" . $name . "%")
                 ->orderBy('id', 'desc')
                 ->paginate();
         } else {
-            $films = Film::orderBy('id', 'desc')->paginate();
+            $films = TypeFilm::orderBy('id', 'desc')->paginate();
         }
         return $films;
     }
 
-    public function createFromArray(array $data): Film
+    public function createFromArray(array $data): TypeFilm
     {
 
-        return Film::create($data);
+        return TypeFilm::create($data);
     }
 
-    public function updateFromArray(Film $film, array $data)
+    public function updateFromArray(TypeFilm $film, array $data)
     {
         $film->update($data);
         return $film;
     }
 
-    public function findFilmByGenreAndSlug(string $genre, string $slug):Film
-    {
-        $film = Film::where('slug', $slug)->firstOrFail();
-        $film->genres;
-        return $film;
-    }
-
-    public function getFilmInSlider(): Collection
-    {
-        $films = Film::where('display_in_slider', true)->where('status', "1")->get();
-        return $films;
-    }
-
-
-    public function getFilmByGenre($genre):Genre
-    {
-
-        $genre = Genre::where("slug",$genre)->firstOrFail();
-        $genre->films;
-        return $genre;
-    }
 
 
 

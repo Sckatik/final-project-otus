@@ -16,19 +16,17 @@
     {{ Form::label('keywords', trans('messages.filmKeyword')) }}
     {{ Form::text('keywords', null, array('class'=>'form-control')) }}
 </div>
-<div class="col-12 col-sm-6">
-    <div class="form-group">
-        {{ Form::label('genre', trans('messages.filmGenre')) }}
-        <select style="width:100%;" name="genres[]" class="select2-purple" multiple="multiple">
-            @foreach($genres as $item)
-                @if($item['select'])
-                    <option selected value="{{ $item['id'] }}">{{ $item['name'] }}</option>
-                @else
-                    <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
-                @endIf
-            @endforeach
-        </select>
-    </div>
+<div class="form-group">
+    {{ Form::label('genre', trans('messages.filmGenre')) }}
+    <select style="width:100%;" name="genres[]" class="select2-purple" multiple="multiple">
+        @foreach($genres as $item)
+            @if($item['select'])
+                <option selected value="{{ $item['id'] }}">{{ $item['name'] }}</option>
+            @else
+                <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
+            @endIf
+        @endforeach
+    </select>
 </div>
 
 <!--<div class="col-12 col-sm-6" data-select2-id="41">
@@ -47,7 +45,23 @@
           </div>
         </div>
 </div>-->
-
+<div class="form-group">
+<select class="form-control yearsSelect" name="type" style="width: 100%;" tabindex="-1" aria-hidden="true">
+    <?//dump($typeFilms); ?>
+    @foreach($typeFilms as $item)
+        @if($item['select'])
+            <option selected value="{{ $item['id'] }}">{{ $item['name'] }}</option>
+        @else
+            <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
+        @endIf
+    @endforeach
+  </select>
+</div>
+<div class="form-group">
+    {{ Form::label('display_in_slider', trans('messages.displayInSlider')) }}
+    {{ Form::select('display_in_slider', [ 1 =>trans('messages.displayInSliderYes'),
+    0 => trans('messages.displayInSliderNo')]) }}
+</div>
 <div class="form-group">
     {{ Form::label('slug', trans('messages.filmSlug')) }}
     {{ Form::text('slug', null, array('class'=>'form-control')) }}

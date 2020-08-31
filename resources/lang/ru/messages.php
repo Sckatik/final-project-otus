@@ -31,5 +31,8 @@ return [
     "filmStatus"=>"Статус",
     "filmStatusPublished"=> "Опубликовано",
     "filmStatusNotPublished"=> "Не опубликовано",
-    'filmGenre'=> "Жанр фильма"
+    'filmGenre'=> "Жанр фильма",
+    'displayInSlider'=>"Отображать в слайдере",
+    'displayInSliderYes'=>"Да",
+    'displayInSliderNo'=>"Нет"
 ];

@@ -17,5 +17,8 @@ return [
     "filmStatus"=>"Status",
     "filmStatusPublished"=> "Published",
     "filmStatusNotPublished"=> "NotPublished",
-    'filmGenre'=> "Жанр фильма"
+    'filmGenre'=> "Жанр фильма",
+    'displayInSlider'=>"Display in slider",
+    'displayInSliderYes'=>"Yes",
+    'displayInSliderNo'=>"No"
 ];

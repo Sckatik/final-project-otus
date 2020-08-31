@@ -30,6 +30,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $filmsInSlider = $this->filmsService->filmsInSlider();
+        return view('home', [
+            'filmsInSlider' => $filmsInSlider
+        ])->render();
     }
 }

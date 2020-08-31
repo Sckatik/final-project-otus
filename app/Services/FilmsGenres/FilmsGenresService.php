@@ -39,7 +39,7 @@ class FilmsGenresService
     public function updateFilmGenre(int $filmId, array $genres): array
     {
        // $find = $this->filmGenreRepository->searchByFilmId($filmId);
-        $flight = FilmGenre::where('film_id', $filmId)->delete();
+        $filmGenre = FilmGenre::where('film_id', $filmId)->delete();
 
         $updateAr = [];
         foreach($genres as $item){
@@ -67,6 +67,7 @@ class FilmsGenresService
                 $arGenres[] = [
                     "id"=>$item->id,
                     "name"=>$item->name,
+                    "slug"=>$item->slug,
                     "select"=>true
                 ];
              }
@@ -74,6 +75,7 @@ class FilmsGenresService
                  $arGenres[] = [
                      "id"=>$item->id,
                      "name"=>$item->name,
+                     "slug"=>$item->slug,
                      "select"=>false
                  ];
              }
