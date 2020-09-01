@@ -61,6 +61,25 @@ class FilmsService
     }
 
     /**
+     * @param string $genre
+     * @return Genre
+    */
+    public function getFilmByGenre(string $genre):Genre
+    {
+        return $this->filmRepository->getFilmByGenre($genre);
+    }
+
+
+    /**
+     * @param string $genre
+     * @return Array
+    */
+    public function getFilmByGenreInSlider(string $genre):Array
+    {
+        return $this->filmRepository->getFilmByGenreInSlider($genre);
+    }
+
+    /**
      * @param int $id
      * @return Film|null
      */

@@ -31,8 +31,12 @@ class HomeController extends Controller
     public function index()
     {
         $filmsInSlider = $this->filmsService->filmsInSlider();
+        $filmByGenreKomediya = $this->filmsService->getFilmByGenreInSlider('komediya');
+        $filmByGenreDrama = $this->filmsService->getFilmByGenreInSlider('drama');
         return view('home', [
-            'filmsInSlider' => $filmsInSlider
+            'filmsInSlider' => $filmsInSlider,
+            'filmByGenreKomediya'=>$filmByGenreKomediya,
+            'filmByGenreDrama'=>$filmByGenreDrama
         ])->render();
     }
 }

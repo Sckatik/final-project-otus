@@ -84,18 +84,16 @@ class FilmController extends Controller
             ]);
             return  abort(403, 'Нет прав на создание фильма', []);
         }
-
-        $genres = $this->filmsGenresService->getSelectGenreForFilm();
-        $typeFilms = $this->typeFilmsService->indexTypeFilm();
         // добавил в шаблон переменную moderator для проверки
         // модератор может создавать фильмы только не опубликованными
-        return view('admin.films.create',
-            [
-                'moderator'=>$this->getCurrentUser()->isModerator(),
-                'genres'=>$genres,
-                'typeFilms'=>$typeFilms
-            ]
-        );
+        $genres = $this->genresService->getGenres();
+        $typeFilms = $this->typeFilmsService->allTypeFilm();
+
+        return view('admin.films.create', [
+            'genres'=>$genres,
+            'typeFilms'=>$typeFilms,
+            'moderator'=>$this->getCurrentUser()->isModerator()
+        ]);
     }
 
     /**

@@ -14,7 +14,7 @@ interface TypeFilmRepositoryInterface
 
     public function getList(int $limit, int $offset);
 
-    public function getAllList();
+    public function getAllList():Collection;
 
     public function searchByNames(string $name = '');
 

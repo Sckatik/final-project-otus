@@ -59,7 +59,13 @@
 </div>
 <div class="form-group">
     {{ Form::label('image', trans('messages.image')) }}
-    <div class="input-group">
+
+    @if(isset($film) && !empty($film->image))
+        <img style="width:20%;" src="/storage/{{ $film->image }}" />
+    @else
+        {{ Form::file('image') }}
+    @endIf
+   <!-- <div class="input-group">
         <div class="custom-file">
           <input type="file" class="custom-file-input" id="exampleInputFile">
           <label class="custom-file-label" for="exampleInputFile">Выберите файл</label>
@@ -67,7 +73,7 @@
         <div class="input-group-append">
           <span class="input-group-text" id="">Загрузить</span>
         </div>
-    </div>
+    </div> -->
 
 </div>
 <div class="form-group">

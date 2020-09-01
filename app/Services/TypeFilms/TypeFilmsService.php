@@ -50,6 +50,12 @@ class TypeFilmsService
         return $arTypeFilms;
     }
 
+
+    public function allTypeFilm():Collection
+    {
+        return $this->typeFilmRepository->getAllList();
+    }
+
    
     /**
      * @param array $data

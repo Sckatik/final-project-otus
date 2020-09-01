@@ -22,6 +22,8 @@ interface FilmRepositoryInterface
     public function getFilmByGenre(string $genre): Genre;
 
     public function getFilmInSlider(): Collection;
+
+    public function getFilmByGenreInSlider(string $genre): Array;
     
     public function createFromArray(array $data): Film;
 

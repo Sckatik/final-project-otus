@@ -93,10 +93,26 @@ class EloquentFilmRepository implements FilmRepositoryInterface
 
     public function getFilmByGenre($genre):Genre
     {
-
         $genre = Genre::where("slug",$genre)->firstOrFail();
         $genre->films;
         return $genre;
+    }
+
+    public function getFilmByGenreInSlider($genre): Array
+    {
+        $genre = Genre::where("slug",$genre)->firstOrFail();
+        $genre->films;
+        $arFilms = [];
+        $arFilms['genre'] = $genre->name;
+        $arFilms['slug'] = $genre->slug;
+        foreach($genre->films as $item){
+            $arFilms['items'][] = [
+                "id"=>$item->id,
+                "title"=>$item->title,
+                "slug"=>$genre->slug.'/'.$item->slug
+            ];
+        }
+        return $arFilms;
     }
 
 

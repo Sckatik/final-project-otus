@@ -24,7 +24,7 @@ class EloquentFilmGenreRepository implements FilmGenreRepositoryInterface
 
     public function getList(): Collection
     {
-        $query = FilmGenre::query()->pluck('name', 'id');
+        $query = FilmGenre::query()->get();
         return $query;
     }
 

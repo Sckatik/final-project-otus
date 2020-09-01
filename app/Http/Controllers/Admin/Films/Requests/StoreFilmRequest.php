@@ -22,6 +22,7 @@ class StoreFilmRequest extends FormRequest
         return [
             'title' => 'required|unique:films,title|max:100',
             'slug' => 'required|unique:films,slug|max:100',
+            'image' => 'image|nullable|max:1999',
         ];
     }
 

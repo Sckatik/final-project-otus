@@ -14,9 +14,12 @@
 @stop
 
 @section('js')
+<script src="https://cdn.tiny.cloud/1/jk40fckf4lchpe87bd5i0gom4ivq5nz0c9t6bmcwum3or6f3/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>tinymce.init({selector:'textarea'});</script>
     <script> 
     console.log('Hi!'); 
     $(".select2-purple").select2();
     $(".yearsSelect").select2();
+    
     </script>
 @stop

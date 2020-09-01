@@ -84,4 +84,9 @@ class FilmsGenresService
         return $arGenres;
     }
 
+    public function getAll(): Collection
+    {
+        return $this->filmGenreRepository->getList();
+    }
+
 }

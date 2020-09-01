@@ -24,8 +24,19 @@ class CreateFilmHandler
      */
     public function handle(array $data): Film
     {
-        
-        //добавить запись в жанр
+        if(isset($data['image'])){
+            // Имя и расширение файла
+            $filenameWithExt = $data['image']->getClientOriginalName();
+            // Только оригинальное имя файла
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Расширение
+            $extention = $data['image']->getClientOriginalExtension();
+            // Путь для сохранения
+            $fileNameToStore = "image_poster/".$filename."_".time().".".$extention;
+            // Сохраняем файл
+            $path = $data['image']->storeAs('public/', $fileNameToStore);
+            $data['image'] = $fileNameToStore;
+        }
         return $this->filmRepository->createFromArray($data);
     }
 

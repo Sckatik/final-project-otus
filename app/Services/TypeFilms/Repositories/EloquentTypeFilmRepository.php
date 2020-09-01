@@ -35,7 +35,7 @@ class EloquentTypeFilmRepository implements TypeFilmRepositoryInterface
         return $query->get();
     }
 
-    public function getAllList()
+    public function getAllList():Collection
     {
         $query = TypeFilm::query();
         return $query->get();

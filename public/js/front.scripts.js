@@ -336,6 +336,27 @@ jQuery(document).ready(function($) {
         $('#dt-boeviki').trigger('owl.prev')
     });
 
+
+
+    $('#dt-komedi').owlCarousel({
+        autoPlay: false,
+        items: 5,
+        stopOnHover: true,
+        pagination: false,
+        itemsDesktop: [1199, 5],
+        itemsDesktopSmall: [980, 5],
+        itemsTablet: [768, 4],
+        itemsTabletSmall: false,
+        itemsMobile: [479, 3]
+    });
+
+    $('.dt-komedi .next3').click(function() {
+        $('#dt-komedi').trigger('owl.next')
+    });
+    $('.dt-komedi .prev3').click(function() {
+        $('#dt-komedi').trigger('owl.prev')
+    });
+
     $('#slider-movies').owlCarousel({
         autoPlay: false,
         items: 2,
