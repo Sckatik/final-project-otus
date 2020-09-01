@@ -254,7 +254,7 @@ return [
             'label_color' => 'success',
             'can' => 'films',
         ],
-        */
+     
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
@@ -266,6 +266,7 @@ return [
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
+           */
       /*  [
             'text' => 'multilevel',
             'icon' => 'fas fa-fw fa-share',

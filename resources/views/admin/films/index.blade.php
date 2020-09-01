@@ -12,5 +12,4 @@
 <div class="card">
     @include('admin.films.blocks.list.index')
 </div>
-
 @stop
