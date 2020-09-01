@@ -105,6 +105,7 @@ class EloquentFilmRepository implements FilmRepositoryInterface
         $arFilms = [];
         $arFilms['genre'] = $genre->name;
         $arFilms['slug'] = $genre->slug;
+        $arFilms['items'] = [];
         foreach($genre->films as $item){
             $arFilms['items'][] = [
                 "id"=>$item->id,

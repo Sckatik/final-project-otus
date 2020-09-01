@@ -24,6 +24,14 @@ class CreateFilmsTable extends Migration
             $table->string('status')->comment('Опубликовано или нет');
             $table->text('content')->comment('Описание фильма')->nullable();
             $table->string('year')->comment('Год фильма');
+            $table->integer('kinopoisk_id')->comment('Id кинопоиска')->default(1);
+            $table->string('iframe')->comment('Ссылка на iframe')->nullable();
+            $table->string('country_create')->comment('Страна фильма')->nullable();
+            $table->string('count_time')->comment('Длительность фильма')->nullable();
+            $table->string('kinopoisk_raiting')->comment('Рейтинг кинопоиска')->default(0)->nullable();
+            $table->string('imdb_raiting')->comment('Рейтинг IMDB')->default(0)->nullable();
+            $table->string('kinopoisk_voite')->comment('Голоса кинопоиска')->default(0)->nullable();
+            $table->string('imdb_voite')->comment('Голоса IMDB')->default(0)->nullable();
             $table->boolean('display_in_slider')->comment('Отображать в слайдере на главной')->default(0);
             $table->integer('type')->comment('из справочника типы фильма')->default(1);
             $table->timestamps();

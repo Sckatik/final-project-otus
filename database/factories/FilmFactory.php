@@ -15,6 +15,7 @@ $factory->define(\App\Models\Film::class, function (Faker $faker) {
         'image'=>"",
         'slug'=>Str::slug($title),
         'status'=>1,
+        'kinopoisk_id'=>1,
         'content'=>$faker->sentence(20),
         'year'=>$faker->year,
         'created_at' => $createdAt,

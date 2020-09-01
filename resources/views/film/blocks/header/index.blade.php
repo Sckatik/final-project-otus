@@ -1,3 +1,12 @@
+
+@if (!Auth::guest())
+    <div id="fakeplayer" class="iframe_video ">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/5qap5aO4i9A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+@else
+    <p>Для просмотра фильма авторизуйтесь</p>
+    <p><a href="/login">Войти</a> или <a href="/register">Зарегистрироваться</a></p>
+@endIf
 <div class="sheader">
     <div class="poster"> 
         <img src="https://sckatik.ru/wp-content/uploads/2020/08/300x450.jpg">

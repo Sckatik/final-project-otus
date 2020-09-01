@@ -22,5 +22,11 @@ return [
     'displayInSliderYes'=>"Yes",
     'displayInSliderNo'=>"No",
     'typeFilm'=>"Type film",
-    'image'=>"Poster to film"
+    'image'=>"Poster to film",
+    'kinpoiskId'=>"Id kinopoisk",
+    'iframe'=>"Link on film (player or iframe)",
+    'countryCreate'=>"Country",
+    'countTime'=>"CountTime",
+    'imdbRaiting'=>"Imdb raiting",
+    'kinopoiskRaiting'=>"kinopoisk Raiting"
 ];

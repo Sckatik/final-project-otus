@@ -36,5 +36,11 @@ return [
     'displayInSliderYes'=>"Да",
     'displayInSliderNo'=>"Нет",
     'typeFilm'=>"Тип фильма",
-    'image'=>"Постер к фильму"
+    'image'=>"Постер к фильму",
+    'kinpoiskId'=>"Id кинопоиска",
+    'iframe'=>"Ссылка на фильм(плеер или iframe)",
+    'countryCreate'=>"Страна",
+    'countTime'=>"Длительность",
+    'imdbRaiting'=>"Imdb рейтинг",
+    'kinopoiskRaiting'=>"Кинопоиск рейтинг"
 ];

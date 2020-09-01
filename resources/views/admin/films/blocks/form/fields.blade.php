@@ -77,6 +77,34 @@
 
 </div>
 <div class="form-group">
+    {{ Form::label('kinopoisk_id', trans('messages.kinpoiskId')) }}
+    {{ Form::text('kinopoisk_id', null, array('class'=>'form-control')) }}  
+</div>
+<div class="form-group">
+    {{ Form::label('iframe', trans('messages.iframe')) }}
+    {{ Form::textarea('iframe', null, array('class'=>'form-control')) }}
+</div>
+<div class="form-group">
+    {{ Form::label('country_create', trans('messages.countryCreate')) }}
+    {{ Form::text('country_create', null, array('class'=>'form-control')) }}  
+</div>
+<div class="form-group">
+    {{ Form::label('count_time', trans('messages.countTime')) }}
+    {{ Form::text('count_time', null, array('class'=>'form-control')) }}  
+</div>
+
+<div class="form-group">
+    {{ Form::label('kinopoisk_raiting', trans('messages.kinopoiskRaiting')) }}
+    {{ Form::text('kinopoisk_raiting', null, array('class'=>'form-control')) }}  
+</div>
+
+
+<div class="form-group">
+    {{ Form::label('imdb_raiting', trans('messages.imdbRaiting')) }}
+    {{ Form::text('imdb_raiting', null, array('class'=>'form-control')) }}  
+</div>
+
+<div class="form-group">
     {{ Form::label('display_in_slider', trans('messages.displayInSlider')) }}
     {{ Form::select('display_in_slider', [ 1 =>trans('messages.displayInSliderYes'),
     0 => trans('messages.displayInSliderNo')]) }}

@@ -1,9 +1,9 @@
 <article class="item" id="post-1">
     <div class="image">
-        <a href="#">
-            <img src="https://sckatik.ru/wp-content/uploads/2020/05/Wonder_Woman_hero_Wonder_Woman_2017_film_Gal_529948_3840x2400-300x188.jpg" />
+        <a href="{{ $film["slug"] }}">
+            <img src="/storage/{{ $film["image"]}}" />
         </a>
-        <a href="#">
+        <a href="{{ $film["slug"] }}">
             <div class="data">
                 <h3 class="title">
                   {{ $film["title"] }}

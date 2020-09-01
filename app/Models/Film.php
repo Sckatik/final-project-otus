@@ -79,7 +79,13 @@ class Film extends Model
         'year',
         'image',
         'display_in_slider',
-        'type'
+        'type',
+        'kinopoisk_id',
+        'iframe',
+        'country_create',
+        'count_time',
+        'kinopoisk_raiting',
+        'imdb_raiting'
     ];
 
     public function actors()

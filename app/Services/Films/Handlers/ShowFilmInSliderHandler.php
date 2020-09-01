@@ -4,6 +4,8 @@ namespace App\Services\Films\Handlers;
 
 
 use App\Models\Film;
+use App\Models\FilmGenre;
+use App\Models\Genre;
 use App\Services\Films\Repositories\EloquentFilmRepository;
 use App\Services\Genres\Repositories\EloquentGenreRepository;
 use App\Services\TypeFilms\Repositories\EloquentTypeFilmRepository;
@@ -37,10 +39,12 @@ class ShowFilmInSliderHandler
         foreach($films as $item){
             $typeFilm = $this->typeFilmRepository->find($item->type);
             //TypeFilm::where('id',$item->type)->firstOrFail();
-            //$filmGenre = FilmGenre::where('film_id', $item->id)->firstOrFail();
+            $filmGenre = FilmGenre::where('film_id', $item->id)->firstOrFail();
+            $genre = Genre::where('id',$filmGenre['genre_id'])->firstOrFail();
             $arFilm[] = [
                 "title"=>$item->title,
-                "slug"=>$item->slug,
+                "slug"=>$genre->slug.'/'.$item->slug,
+                "image"=>$item->image,
                 "type"=>$typeFilm->name
             ];
         }
